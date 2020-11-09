@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  express-mongoose-es6-rest-api:
+  be-service:
     build:
       context: .
     volumes:
@@ -23,9 +23,9 @@ services:
       - .env
 
     # Overwrite any env var defined in .env file (if required)
-    environment:
-      - MONGO_HOST=mongodb://mongo/express-mongoose-es6-rest-api-development
-      - DEBUG=express-mongoose-es6-rest-api:*
+    # environment:
+    #   - MONGO_HOST=mongodb://kerem:kerem@localhost/perf-analytics
+    #   - DEBUG=express-mongoose-es6-rest-api:*
 
     # Link to containers in another service.
     # Links also express dependency between services in the same way as depends_on,

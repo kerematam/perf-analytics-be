@@ -1,10 +1,9 @@
 # Use root/example as user/password credentials
-version: '3.1'
+version: "3.1"
 
 services:
-
   mongo:
-    image: mongo
+    image: "mongo:4.4"
     ports:
       - 27017:27017
     restart: always
