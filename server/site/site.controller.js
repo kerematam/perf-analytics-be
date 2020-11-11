@@ -1,6 +1,5 @@
 const { db } = require("./site.model");
 const Site = require("./site.model");
-const puppeteer = require("puppeteer");
 
 /**
  * Load Site and append to req.

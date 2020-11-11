@@ -1,4 +1,4 @@
-version: '2'
+version: "3.8"
 
 services:
   be-service:
@@ -13,26 +13,38 @@ services:
       # over to the new volume upon volume initialization.
       # node_modules from this new volume will be used and not from your local dev env.
       - /app/node_modules/
-
-    # Expose ports [HOST:CONTAINER}
     ports:
       - "4040:4040"
-
-    # Set environment variables from this file
     env_file:
       - .env
-
+    depends_on:
+      - mongo
     # Overwrite any env var defined in .env file (if required)
     # environment:
     #   - MONGO_HOST=mongodb://kerem:kerem@localhost/perf-analytics
     #   - DEBUG=express-mongoose-es6-rest-api:*
-
-    # Link to containers in another service.
-    # Links also express dependency between services in the same way as depends_on,
-    # so they determine the order of service startup.
-    links:
-      - mongo
+  
   mongo:
-    image: "mongo:3.4"
+    image: "mongo:4.4"
     ports:
-      - "27017:27017"
+      - 27017:27017
+    restart: always
+    volumes:
+      - db:/data/db
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    env_file:
+      - .env
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - .env
+
+networks:
+  db:
+
+volumes:
+  db:

@@ -5,7 +5,7 @@ const APIError = require("../helpers/APIError");
 
 const Schema = mongoose.Schema;
 
-const SiteSchema = new mongoose.Schema({
+const SiteSchema = new Schema({
   url: {
     type: String,
     required: true,
@@ -56,7 +56,6 @@ SiteSchema.statics = {
    * @returns {Promise<User[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
-    // return this.find({ user: { $in: [userId] } });
     return this.find()
       .sort({ createdAt: -1 })
       .skip(+skip)

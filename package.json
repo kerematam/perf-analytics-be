@@ -59,7 +59,6 @@
     "mongoose": "^5.10.11",
     "morgan": "1.9.0",
     "node-fetch": "^2.6.1",
-    "puppeteer": "^5.3.1",
     "winston": "2.4.1"
   },
   "devDependencies": {
